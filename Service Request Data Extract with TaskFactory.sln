@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34729.46
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Datascape Extract and Load TF", "Integration Services Project1\Datascape Extract and Load TF.dtproj", "{5095A207-5BC5-443E-9132-83A9947C4705}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5095A207-5BC5-443E-9132-83A9947C4705}.Development|Default.ActiveCfg = Development
+		{5095A207-5BC5-443E-9132-83A9947C4705}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D3A18CB-A710-4FFC-902D-EC78A6F9A269}
+	EndGlobalSection
+EndGlobal

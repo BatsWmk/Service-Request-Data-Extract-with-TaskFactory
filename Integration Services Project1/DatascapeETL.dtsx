@@ -1,0 +1,745 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/3/2024 11:45:59 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WMKSQL2019DEV"
+  DTS:CreatorName="WMK\da-garyw"
+  DTS:DTSID="{B05509BF-6BE7-4B8F-972F-433EE05C7680}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.167"
+  DTS:LocaleID="5129"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{8C6E4DB6-43BB-4961-9D97-2DC044897610}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TF Rest Connection Manager]"
+      DTS:CreationName="RestConnectionManagerTF"
+      DTS:DTSID="{B9C75D76-078C-4A41-B569-FB120BBADC03}"
+      DTS:ObjectName="TF Rest Connection Manager">
+      <DTS:ObjectData>
+        <RestConnectionManager
+          ConnectionString="RestAuthenticationUrl=;SkipAuthentication=False;SuccessfulAuthenticationToken=;UseBase64AuthenticationHeader=True;UserName=T1Integration;ApiReturnFormat=1;BaseEndpointUrl=;CertificatePath=;CertificateStoreLocationType=0;CertificateStoreName=0;CertificateThumbprint=;ConfigurationFilePath=;ProxyHost=;ProxyPort=0;ProxyUserName=;SecurityProtocol=0;UseClientCertificate=False;IgnoreSslCertificateVerification=False;AutoFollowRedirects=True;"
+          Headers="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;ArrayOfHeader xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+          ConnectByProxy="False">
+          <Password
+            Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAT7Rfvc8So0Gb8m6UremDawAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADRc//9Xq1kQBb34O7c8HsgAAAAAASAAACgAAAAEAAAAM14svKccT13Mmi/pPxklpYoAAAAH/RBoFdxX2HOQY5VWjJMkPNoruRJyG2jtZzsMirFN+HRK2PRi0Ai5xQAAADWRRwOzsBKbua9V18fBvgtJjRe/g</Password>
+        </RestConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[wmkbikedev.WMKImport]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0AF80C94-A92D-433C-9B70-F27ABBBC1B8D}"
+      DTS:ObjectName="wmkbikedev.WMKImport">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=wmkbikedev;Initial Catalog=WMKImport;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8AD55569-AD52-48DA-8891-D0B7EE56E3B6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Load_DATASCAPE_SR_Extract]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[wmkbikedev.WMKImport]"
+                  connectionManagerRefId="Package.ConnectionManagers[wmkbikedev.WMKImport]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RequestGroupID]"
+                      cachedDataType="i4"
+                      cachedName="RequestGroupID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RequestGroupID]"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[RequestGroupID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RequestGroup]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RequestGroup"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RequestGroup]"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[RequestGroup]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ReceivedDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ReceivedDate"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ReceivedDate]"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[ReceivedDate]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Status]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[Status]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CompletedDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CompletedDate"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompletedDate]"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[CompletedDate]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RequestGroupSubTypeID]"
+                      cachedDataType="i4"
+                      cachedName="RequestGroupSubTypeID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RequestGroupSubTypeID]"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[RequestGroupSubTypeID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RequestGroupSubType]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RequestGroupSubType"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RequestGroupSubType]"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[RequestGroupSubType]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TechOneCTRNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TechOneCTRNumber"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TechOneCTRNumber]"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[TechOneCTRNumber]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ContactFullName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ContactFullName"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContactFullName]"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[ContactFullName]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ServiceRequestNo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ServiceRequestNo"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ServicerequestNo]"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[ServiceRequestNo]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RequestGroupID]"
+                      dataType="i4"
+                      name="RequestGroupID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RequestGroup]"
+                      dataType="wstr"
+                      length="255"
+                      name="RequestGroup" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ReceivedDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="ReceivedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompletedDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="CompletedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RequestGroupSubTypeID]"
+                      dataType="i4"
+                      name="RequestGroupSubTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RequestGroupSubType]"
+                      dataType="wstr"
+                      length="255"
+                      name="RequestGroupSubType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TechOneCTRNumber]"
+                      dataType="wstr"
+                      length="255"
+                      name="TechOneCTRNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContactFullName]"
+                      dataType="wstr"
+                      length="255"
+                      name="ContactFullName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ServicerequestNo]"
+                      dataType="wstr"
+                      length="255"
+                      name="ServicerequestNo" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\TF Rest Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="TF Rest Source;SQL Sentry, LLC; Task Factory (c) 2009 - 2019; https://www.sentryone.com;support@sentryone.com"
+              description="Retrieve data from Rest API's"
+              name="TF Rest Source"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="11">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  name="DebugMode">false</property>
+                <property
+                  dataType="System.String"
+                  description="The end point used to retrieve data from the Rest API"
+                  expressionType="Notify"
+                  name="End Point">https://datascape.cloud/waimakariri-uat/Dataset/Job/ServiceRequestReconciliation?Page=1&amp;PageSize=1000</property>
+                <property
+                  dataType="System.String"
+                  description="The root json path used as a starting point when outputting data"
+                  expressionType="Notify"
+                  name="Root Token Path"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable mapping step to execute after a successful authentication"
+                  expressionType="Notify"
+                  name="Authentication Results Mapping Step">{"RestEndpointUrl":null,"VariableMappings":[]}</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Sets whether to show the advanced settings in the UI or not"
+                  expressionType="Notify"
+                  name="Show Advanced Settings In UI">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The format (json or xml) in which the results from the rest call are returned."
+                  expressionType="Notify"
+                  name="Results Format">1</property>
+                <property
+                  dataType="System.String"
+                  description="The path to the token in the result set that defines the result set cursor value."
+                  expressionType="Notify"
+                  name="Result Set Cursor Token Path"></property>
+                <property
+                  dataType="System.String"
+                  description="The query string parameter used to defined the cursor value of a result set."
+                  expressionType="Notify"
+                  name="Cursor Query String Parameter"></property>
+                <property
+                  dataType="System.String"
+                  description="The value returned in the result set that defines the result set cursor is finished."
+                  expressionType="Notify"
+                  name="Result Set Cursor Finished Value"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The http method to use when calling the rest endpoint."
+                  expressionType="Notify"
+                  name="Http Method"
+                  typeConverter="PragmaticWorks.TaskFactory.ConnectionManagers.Enums+WebRequestMethod">0</property>
+                <property
+                  dataType="System.String"
+                  description="The post data to be used when calling the rest endpoint."
+                  expressionType="Notify"
+                  name="Post Data"></property>
+                <property
+                  dataType="System.String"
+                  description="The content type of the post data."
+                  expressionType="Notify"
+                  name="Content Type">application/json</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Is the cursor token being used a URL?"
+                  expressionType="Notify"
+                  name="Is Cursor Url Based">false</property>
+                <property
+                  dataType="System.String"
+                  description="Headers to add to the rest api call"
+                  expressionType="Notify"
+                  name="Headers"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait before terminating execution of a rest api call. 0 = no timeout."
+                  expressionType="Notify"
+                  name="Execution Timeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Xml Namespaces to use to parse column values"
+                  expressionType="Notify"
+                  name="Xml Namespaces">﻿&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;ArrayOfXmlNamespace xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait between subsequent calls when using paging / cursor"
+                  expressionType="Notify"
+                  name="Round Trip Pause In Seconds">0</property>
+                <property
+                  dataType="System.String"
+                  description="Use this to define a path in the scenario where your endpoint sends back a valid response, but sends an error message instead of the proper response"
+                  expressionType="Notify"
+                  name="Error Response Path"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of retries before failing the component."
+                  expressionType="Notify"
+                  name="Number Of Retries">0</property>
+                <property
+                  dataType="System.String"
+                  description="The variable to track the cookies container."
+                  expressionType="Notify"
+                  name="Cookies Container Variable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode in which pagination is performed."
+                  expressionType="Notify"
+                  name="Pagination Mode"
+                  typeConverter="PragmaticWorks.TaskFactory.Components.Sources.Rest+PaginationMode">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode in which pagination is ended."
+                  expressionType="Notify"
+                  name="Pagination Last Page Detection Mode"
+                  typeConverter="PragmaticWorks.TaskFactory.Components.Sources.Rest+LastPageDetectionMode">3</property>
+                <property
+                  dataType="System.Int32"
+                  description="The http status that is returned when pagination has ended."
+                  expressionType="Notify"
+                  name="Pagination End Http Status Code">404</property>
+                <property
+                  dataType="System.String"
+                  description="The error message contained in value returned from the endpoint."
+                  expressionType="Notify"
+                  name="Pagination End Error Message"></property>
+                <property
+                  dataType="System.String"
+                  description="The template used to inject the pagination template into the postbody or url of the request."
+                  expressionType="Notify"
+                  name="Pagination Token Template"></property>
+                <property
+                  dataType="System.String"
+                  description="Extra settings for the specified unpacker"
+                  expressionType="Notify"
+                  name="Unpacker Settings">{"DateParseHandling":1,"DateTimeZoneHandling":3,"FloatParseHandling":0}</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PragmaticWorks.TaskFactory.RestSource</property>
+                <property
+                  dataType="System.String"
+                  name="Pagination Start Page"></property>
+                <property
+                  dataType="System.Int32"
+                  name="Pagination Increment">1</property>
+                <property
+                  dataType="System.Int32"
+                  name="Pagination Max Page">500</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\TF Rest Source.Connections[RestConnection]"
+                  connectionManagerID="Package.ConnectionManagers[TF Rest Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[TF Rest Connection Manager]"
+                  description="Task Factory Rest Connection"
+                  name="RestConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output]"
+                  name="Rest Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[ServiceRequestNo]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[ServiceRequestNo]"
+                      name="ServiceRequestNo">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">ServiceRequestNo</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[RequestGroupID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[RequestGroupID]"
+                      name="RequestGroupID">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">RequestGroupID</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[RequestGroup]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[RequestGroup]"
+                      name="RequestGroup">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">RequestGroup</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[ReceivedDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[ReceivedDate]"
+                      name="ReceivedDate">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">ReceivedDate</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[Status]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[Status]"
+                      name="Status">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">Status</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[CompletedDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[CompletedDate]"
+                      name="CompletedDate">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">CompletedDate</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[RequestGroupSubTypeID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[RequestGroupSubTypeID]"
+                      name="RequestGroupSubTypeID">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">RequestGroupSubTypeID</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[RequestGroupSubType]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[RequestGroupSubType]"
+                      name="RequestGroupSubType">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">RequestGroupSubType</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[TechOneCTRNumber]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[TechOneCTRNumber]"
+                      name="TechOneCTRNumber">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">TechOneCTRNumber</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[ContactFullName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[ContactFullName]"
+                      name="ContactFullName">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">ContactFullName</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output]"
+                  name="Http Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output].Columns[ErrorDescription]"
+                      name="ErrorDescription" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output].Columns[Http Error Code]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output].Columns[Http Error Code]"
+                      name="Http Error Code" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output].Columns[Error Response]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output].Columns[Error Response]"
+                      name="Error Response" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Rest Source Output]"
+              endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Rest Source Output"
+              startId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C4088B4A-341D-417C-BF5F-FB4C967FF403}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0AF80C94-A92D-433C-9B70-F27ABBBC1B8D}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[Load_DATASCAPE_SR_Extract]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CFA13FF8-240F-48D1-ADE9-9AB12FF922E5}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task"
+          TopLeft="277.642861266525,199.147061118618" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Execute SQL Task"
+          TopLeft="276.428576136122,69.5882362700664" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="355.235718701324,111.188236270066">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,87.9588248485512"
+              Start="0,0"
+              End="0,80.4588248485512">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,80.4588248485512" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Data Flow Task\TF Rest Source"
+          TopLeft="409.090906962172,38.1497315692991" />
+        <NodeLayout
+          Size="165.6,59.2"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="382.761032015273,203.26737889624" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Rest Source Output]"
+          TopLeft="483.890906962172,79.7497315692991">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18.3298749468987,123.517647326941"
+              Start="0,0"
+              End="-18.3298749468987,116.017647326941">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.7588236634707" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,57.7588236634707"
+                    Point2="0,61.7588236634707"
+                    Point3="-4,61.7588236634707" />
+                  <mssgle:LineSegment
+                    End="-14.3298749468987,61.7588236634707" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14.3298749468987,61.7588236634707"
+                    Point2="-18.3298749468987,61.7588236634707"
+                    Point3="-18.3298749468987,65.7588236634707" />
+                  <mssgle:LineSegment
+                    End="-18.3298749468987,116.017647326941" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-52.8063241921994,66.7588236634707,87.2827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
